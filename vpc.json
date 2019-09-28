@@ -1,0 +1,86 @@
+{
+    "AWSTemplateFormatVersion": "2010-09-09",
+    "Description": "This is my first cf template",
+    "Parameters": {
+        "subnet1az": {
+            "Description": "Enter your subnet az",
+            "Type": "AWS::EC2::AvailabilityZone::Name"
+        },
+        "subnet2az": {
+            "Description": "Enter your subnet az",
+            "Type": "AWS::EC2::AvailabilityZone::Name"
+        },
+        "subnet3az": {
+            "Description": "Enter your subnet az",
+            "Type": "AWS::EC2::AvailabilityZone::Name"
+        }
+    },
+    "Resources": {
+        "myvpc": {
+            "Type": "AWS::EC2::VPC",
+            "Properties": {
+                "CidrBlock": "10.1.0.0/16",
+                "Tags": [
+                    {
+                        "Key": "Name",
+                        "Value": "From VsCode"
+                    }
+                ]
+            }
+        },
+        "mysubnet1": {
+            "Type": "AWS::EC2::Subnet",
+            "Properties": {
+                "AvailabilityZone": {
+                    "Ref": "subnet1az"
+                },
+                "VpcId": {
+                    "Ref": "myvpc"
+                },
+                "CidrBlock": "10.1.0.0/24",
+                "Tags": [
+                    {
+                        "Key": "Name",
+                        "Value": "From VsCode"
+                    }
+                ]
+            }
+        },
+        "mysubnet2": {
+            "Type": "AWS::EC2::Subnet",
+            "Properties": {
+                "AvailabilityZone": {
+                    "Ref": "subnet2az"
+                },
+                "VpcId": {
+                    "Ref": "myvpc"
+                },
+                "CidrBlock": "10.1.1.0/24",
+                "Tags": [
+                    {
+                        "Key": "Name",
+                        "Value": "From VsCode"
+                    }
+                ]
+            }
+        },
+        "mysubnet3": {
+            "Type": "AWS::EC2::Subnet",
+            "Properties": {
+                "AvailabilityZone": {
+                    "Ref": "subnet3az"
+                },
+                "VpcId": {
+                    "Ref": "myvpc"
+                },
+                "CidrBlock": "10.1.2.0/24",
+                "Tags": [
+                    {
+                        "Key": "Name",
+                        "Value": "From VsCode"
+                    }
+                ]
+            }
+        }
+    }
+}
